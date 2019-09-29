@@ -41,7 +41,7 @@ def getATCommand(sock, line):
 
 def main():
     if (BT_ADDRESS.startswith("XX")):
-        print("You need to define bluetooth adress of your device first\n")
+        print("You need to define bluetooth address of your device\n")
         print("BT_ADDRESS =", BT_ADDRESS)
         exit()
 		

@@ -13,7 +13,7 @@
 import socket
 
 # Change this
-BT_ADDRESS = "XX:XX:XX:XX:XX:XX"
+BT_ADDRESS = 'FC:03:F6:DC:52:52'
 
 def send(sock, message):
 	sock.send(b"\r\n" + message + b"\r\n")
@@ -53,11 +53,8 @@ def main():
 			pass
 
 	finally:
-		s.shutdown(1)
+		s.shutdown(socket.SHUT_RDWR)
 		
 if __name__ == "__main__":
     main()
-
-		
-		
 

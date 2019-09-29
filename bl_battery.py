@@ -2,7 +2,6 @@
 
 #
 # This script prints the battery charge level of some bluetooth headsets
-# Notice: Headset should be disconnected before running this script
 # Define your BT_ADDRESS before using
 # 
 

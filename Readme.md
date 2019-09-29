@@ -6,7 +6,7 @@ This is a simple python script to print the battery charge level of some bluetoo
 First, change the `BT_ADDRESS` variable to your device's address, Then run the script
 ```bash
 chmod +x bl_battery.py
-./bl_battery.py <Your BT MAC Address>
+./bl_battery.py [HEADSET_MAC_ADDRESS]
 ```
 
 # License

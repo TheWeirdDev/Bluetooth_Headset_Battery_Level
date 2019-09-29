@@ -2,17 +2,13 @@
 
 #
 # This script prints the battery charge level of some bluetooth headsets
-# Define your BT_ADDRESS before using
 # 
 
 # License: GPL-3.0
 # Author: @TheWeirdDev
 # 29 Sept 2019
 
-import socket
-
-# Change this
-BT_ADDRESS = 'XX:XX:XX:XX:XX:XX'
+import socket, sys
 
 def send(sock, message):
     sock.send(b"\r\n" + message + b"\r\n")
@@ -39,10 +35,11 @@ def getATCommand(sock, line):
     return True
 
 def main():
-    if (BT_ADDRESS.startswith("XX")):
-        print("You need to define bluetooth address of your device\n")
-        print("BT_ADDRESS =", BT_ADDRESS)
+    if (len(sys.argv) < 2):
+        print("Usage: bl_battery.py <BT_MAC_ADDRESS>")
         exit()
+    
+    BT_ADDRESS = sys.argv[1]
 		
     s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
     s.connect((BT_ADDRESS, 4))

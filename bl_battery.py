@@ -12,6 +12,7 @@ import socket
 import sys
 from time import sleep
 
+
 def send(sock, message):
     sock.send(b"\r\n" + message + b"\r\n")
 
@@ -33,9 +34,10 @@ def getATCommand(sock, line):
         parts = line[line.index(b',') + 1: -1].split(b',')
         if len(parts) < 1 or (len(parts) % 2) != 0:
             return True
-        icons = {20: " 20ﴆ", 30: " 30ﴇ", 40: " 40ﴈ", 50: " 50ﴉ", 60: " 60ﴊ",
-                 70: " 70ﴋ", 80: " 80ﴌ", 90: " 90ﴍ", 100: " ﴅ"}
-        levels = [20, 30, 40, 50, 60, 70, 80, 90, 100]
+        icons = {10: "10ﴆ", 20: "20ﴆ", 30: "30ﴇ", 40: "40ﴈ",
+                 50: "50ﴉ", 60: "60ﴊ", 70: "70ﴋ", 80: "80ﴌ",
+                 90: "90ﴍ", 100: "100ﴅ"}
+        levels = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
         i = 0
         while i < len(parts):
             key = int(parts[i])
@@ -48,6 +50,7 @@ def getATCommand(sock, line):
     else:
         send(sock, b"OK")
     return True
+
 
 def main():
     if (len(sys.argv) < 2):
@@ -63,7 +66,7 @@ def main():
         while getATCommand(s, s.recv(128)):
             pass
     except OSError:
-        print(" ")
+        print("")
 
 
 if __name__ == "__main__":

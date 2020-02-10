@@ -5,8 +5,10 @@ This is a simple python script to get the battery charge level of some bluetooth
 # How to run
 ```bash
 chmod +x bl_battery.py
-./bl_battery.py [HEADSET_MAC_ADDRESS]
+./bl_battery.py [ADDRESSES] 
 ```
+You can input addresses for as many headphones and devices as you want seperated by spaces.
+
 ### Polybar
 If you are interested in using this in polybar, Try [this project](https://github.com/keystroke3/Bluetooth_Headset_Battery_Level) that has a nice look and icons with setup instructions.
 

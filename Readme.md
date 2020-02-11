@@ -9,9 +9,6 @@ chmod +x bl_battery.py
 ```
 You can input addresses for as many headphones and devices as you want seperated by spaces.
 
-### Polybar
-If you are interested in using this in polybar, Try [this project](https://github.com/keystroke3/Bluetooth_Headset_Battery_Level) that has a nice look and icons with setup instructions.
-
 ## Tested on
 
 - [x] Linux (ArchLinux 5.4.15-arch1-1)

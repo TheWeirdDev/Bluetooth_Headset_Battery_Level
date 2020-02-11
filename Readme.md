@@ -5,7 +5,7 @@ This is a simple python script to get the battery charge level of some bluetooth
 # How to run
 ```bash
 chmod +x bl_battery.py
-./bl_battery.py [ADDRESSES] 
+./bl_battery.py [BT_MAC_ADDRESS_1] ... 
 ```
 You can input addresses for as many headphones and devices as you want seperated by spaces.
 

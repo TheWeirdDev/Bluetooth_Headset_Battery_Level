@@ -49,7 +49,7 @@ def getATCommand(sock, line, device):
 
 def main():
     if (len(sys.argv) < 2):
-        print("Usage: bl_battery.py <BT_MAC_ADDRESS>")
+        print("Usage: bl_battery.py <BT_MAC_ADDRESS_1> ...")
         exit()
     else:
         for device in sys.argv[1:]:

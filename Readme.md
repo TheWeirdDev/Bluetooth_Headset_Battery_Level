@@ -12,10 +12,12 @@ You can input addresses for as many headphones and devices as you want seperated
 ## Tested on
 
 - [x] Linux (ArchLinux 5.4.15-arch1-1)
-- [ ] macos
-- [ ] Windows
 
-Works on windows/macos too? if so, make a pull request and check that checkbox.
+## Donate
+
+You can donate BTC if you like this little project :)
+
+1C7vNTbep9G9oreVf7f3fV9uYJ3euMA2WR
 
 # License
 GPL-3.0

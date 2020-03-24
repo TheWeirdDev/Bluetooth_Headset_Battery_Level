@@ -17,7 +17,7 @@ You can input addresses for as many headphones and devices as you want seperated
 
 You can donate BTC if you like this little project :)
 
-1C7vNTbep9G9oreVf7f3fV9uYJ3euMA2WR
+1KXJPJSmXUocieC3neRZEDakpzfcyumLqS
 
 # License
 GPL-3.0

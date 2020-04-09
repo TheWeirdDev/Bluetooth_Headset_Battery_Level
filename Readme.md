@@ -20,7 +20,7 @@ You can donate if you like this little project :)
 BTC:
 1KXJPJSmXUocieC3neRZEDakpzfcyumLqS
 
-BTC Cache:
+BTC Cash:
 qzsf6jdju8pq5l4wm6e0r7ahc2hljeyn3sldew58l8
 
 ETHER:

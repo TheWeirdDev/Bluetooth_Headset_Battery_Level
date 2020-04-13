@@ -2,6 +2,8 @@
 
 This is a simple python script to get the battery charge level of some bluetooth headsets
 
+You need python version 3.6.0 or newer to run the script.
+
 # How to run
 ```bash
 chmod +x bl_battery.py

@@ -27,21 +27,15 @@ def getATCommand(sock, line, device):
         send(sock, b"+CIND: 5")
         send(sock, b"OK")
     elif b"IPHONEACCEV" in line:
-        if b',' not in line:
-            return True
-
-        parts = line[line.index(b',') + 1: -1].split(b',')
-        if len(parts) < 1 or (len(parts) % 2) != 0:
-            return True
-        i = 0
-        while i < len(parts):
-            key = int(parts[i])
-            val = int(parts[i + 1])
-            if key == 1:
-                blevel = (val + 1) * 10
+        parts = line.strip().split(b',')[1:]
+        if len(parts) > 1 and (len(parts) % 2) == 0:
+            parts = iter(parts)
+            params = dict(zip(parts, parts))
+            print(params)
+            if b'1' in params:
+                blevel = (int(params[b'1']) + 1) * 10
                 print(f"Battery level for {device} is {blevel}%")
                 return False
-            i += 2
     else:
         send(sock, b"OK")
     return True
@@ -60,8 +54,8 @@ def main():
 
                 while getATCommand(s, s.recv(128), device):
                     pass
-            except OSError:
-                print(f"{device} is offline")
+            except OSError as e:
+                print(f"{device} is offline", e)
 
 
 if __name__ == "__main__":

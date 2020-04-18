@@ -31,7 +31,6 @@ def getATCommand(sock, line, device):
         if len(parts) > 1 and (len(parts) % 2) == 0:
             parts = iter(parts)
             params = dict(zip(parts, parts))
-            print(params)
             if b'1' in params:
                 blevel = (int(params[b'1']) + 1) * 10
                 print(f"Battery level for {device} is {blevel}%")

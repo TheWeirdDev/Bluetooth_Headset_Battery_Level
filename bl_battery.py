@@ -26,6 +26,9 @@ def getATCommand(sock, line, device):
     elif b"CIND?" in line:
         send(sock, b"+CIND: 5")
         send(sock, b"OK")
+    elif b"XAPL=" in line:
+        send(sock, b"+XAPL: iPhone,7")
+        send(sock, b"OK")
     elif b"IPHONEACCEV" in line:
         parts = line.strip().split(b',')[1:]
         if len(parts) > 1 and (len(parts) % 2) == 0:

@@ -17,14 +17,25 @@ def send(sock, message):
 
 
 def getATCommand(sock, line, device):
+    blevel = -1
+
     if b"BRSF" in line:
-        send(sock, b"+BRSF:20")
+        send(sock, b"+BRSF: 1024")
         send(sock, b"OK")
     elif b"CIND=" in line:
         send(sock, b"+CIND: (\"battchg\",(0-5))")
         send(sock, b"OK")
     elif b"CIND?" in line:
         send(sock, b"+CIND: 5")
+        send(sock, b"OK")
+    elif b"BIND=?" in line:
+        # Announce that we support the battery level HF indicator
+        # https://www.bluetooth.com/specifications/assigned-numbers/hands-free-profile/
+        send(sock, b"+BIND: (2)")
+        send(sock, b"OK")
+    elif b"BIND?" in line:
+        # Enable battery level HF indicator
+        send(sock, b"+BIND: 2,1")
         send(sock, b"OK")
     elif b"XAPL=" in line:
         send(sock, b"+XAPL: iPhone,7")
@@ -36,10 +47,17 @@ def getATCommand(sock, line, device):
             params = dict(zip(parts, parts))
             if b'1' in params:
                 blevel = (int(params[b'1']) + 1) * 10
-                print(f"Battery level for {device} is {blevel}%")
-                return False
+    elif b"BIEV=" in line:
+        params = line.strip().split(b"=")[1].split(b",")
+        if params[0] == b"2":
+            blevel = int(params[1])
     else:
         send(sock, b"OK")
+
+    if blevel != -1:
+        print(f"Battery level for {device} is {blevel}%")
+        return False
+
     return True
 
 

@@ -8,6 +8,7 @@ This script prints the battery charge level of some bluetooth headsets
 # Author: @TheWeirdDev
 # 29 Sept 2019
 
+import errno
 import socket
 import sys
 
@@ -16,7 +17,7 @@ def send(sock, message):
     sock.send(b"\r\n" + message + b"\r\n")
 
 
-def getATCommand(sock, line, device):
+def getATCommand(sock, line, device, port):
     blevel = -1
 
     if b"BRSF" in line:
@@ -55,7 +56,7 @@ def getATCommand(sock, line, device):
         send(sock, b"OK")
 
     if blevel != -1:
-        print(f"Battery level for {device} is {blevel}%")
+        print(f"Battery level for {device} port {port} is {blevel}%")
         return False
 
     return True
@@ -63,16 +64,28 @@ def getATCommand(sock, line, device):
 
 def main():
     if (len(sys.argv) < 2):
-        print("Usage: bl_battery.py <BT_MAC_ADDRESS_1> ...")
+        print("Usage: bl_battery.py <BT_MAC_ADDRESS_1>[.PORT] ...")
         exit()
     else:
         for device in sys.argv[1:]:
+            i = device.find('.')
+            if i == -1:
+                ports = range(1, 10)
+            else:
+                ports = [int(device[i+1:])]
+                device = device[:i]
             try:
-                s = socket.socket(socket.AF_BLUETOOTH,
-                                  socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
-                s.connect((device, 4))
-
-                while getATCommand(s, s.recv(128), device):
+                for p in ports:
+                    try:
+                        s = socket.socket(socket.AF_BLUETOOTH,
+                                          socket.SOCK_STREAM,
+                                          socket.BTPROTO_RFCOMM)
+                        s.connect((device, p))
+                        break
+                    except OSError as e:
+                        if e.errno != errno.EHOSTDOWN or p == ports[-1]:
+                            raise
+                while getATCommand(s, s.recv(128), device, p):
                     pass
             except OSError as e:
                 print(f"{device} is offline", e)

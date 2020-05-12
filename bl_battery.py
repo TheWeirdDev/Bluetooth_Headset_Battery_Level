@@ -70,22 +70,15 @@ def main():
         for device in sys.argv[1:]:
             i = device.find('.')
             if i == -1:
-                ports = range(1, 10)
+                port = 4
             else:
-                ports = [int(device[i+1:])]
+                port = int(device[i+1:])
                 device = device[:i]
             try:
-                for p in ports:
-                    try:
-                        s = socket.socket(socket.AF_BLUETOOTH,
-                                          socket.SOCK_STREAM,
-                                          socket.BTPROTO_RFCOMM)
-                        s.connect((device, p))
-                        break
-                    except OSError as e:
-                        if e.errno != errno.EHOSTDOWN or p == ports[-1]:
-                            raise
-                while getATCommand(s, s.recv(128), device, p):
+                s = socket.socket(socket.AF_BLUETOOTH,
+                                  socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
+                s.connect((device, port))
+                while getATCommand(s, s.recv(128), device, port):
                     pass
             except OSError as e:
                 print(f"{device} is offline", e)

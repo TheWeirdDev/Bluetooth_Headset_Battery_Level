@@ -75,11 +75,11 @@ def main():
                 port = int(device[i+1:])
                 device = device[:i]
             try:
-                s = socket.socket(socket.AF_BLUETOOTH,
-                                  socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
-                s.connect((device, port))
-                while getATCommand(s, s.recv(128), device, port):
-                    pass
+                with socket.socket(socket.AF_BLUETOOTH,
+                        socket.SOCK_STREAM, socket.BTPROTO_RFCOMM) as s:
+                    s.connect((device, port))
+                    while getATCommand(s, s.recv(128), device, port):
+                        pass
             except OSError as e:
                 print(f"{device} is offline", e)
 

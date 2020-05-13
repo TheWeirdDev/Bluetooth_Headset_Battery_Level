@@ -65,6 +65,7 @@ def getATCommand(sock, line, device, port):
 def main():
     if (len(sys.argv) < 2):
         print("Usage: bl_battery.py <BT_MAC_ADDRESS_1>[.PORT] ...")
+        print("         Port number is optional (default = 4)")
         exit()
     else:
         for device in sys.argv[1:]:

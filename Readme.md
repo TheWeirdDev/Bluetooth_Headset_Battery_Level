@@ -15,7 +15,7 @@ You can input addresses for as many devices as you want separated by space.
 
 ### It didn't work?
 
-You can set the port number manually by adding a dot at the end of mac address, like this: `00:00:00:00:00.3`
+You can set the port number manually by adding a dot at the end of mac address, like this: `00:00:00:00:00:00.3`
 
 Try port numbers `1 to 9` to find the one that works for your device.
 

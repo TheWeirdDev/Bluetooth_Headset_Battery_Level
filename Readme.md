@@ -37,7 +37,7 @@ You can donate if you like this project :)
 
 BTC: `1KXJPJSmXUocieC3neRZEDakpzfcyumLqS`
 
-BCH: `qzsf6jdju8pq5l4wm6e0r7ahc2hljeyn3sldew58l8`
+BCH: `qzzmzegfy76r5glpj26jzq2xly2cczsmfyrn66ax8q`
 
 ETH: `0xb6178080c8f0792e6370959909199647e26b8457`
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-This script prints the battery charge level of some bluetooth headsets
+A python script to get battery level from Bluetooth headsets
 """
 
 # License: GPL-3.0
@@ -9,7 +9,7 @@ This script prints the battery charge level of some bluetooth headsets
 # 29 Sept 2019
 
 import errno
-import socket
+import bluetooth
 import sys
 
 
@@ -17,7 +17,7 @@ def send(sock, message):
     sock.send(b"\r\n" + message + b"\r\n")
 
 
-def getATCommand(sock, line, device, port):
+def getATCommand(sock, line, device):
     blevel = -1
 
     if b"BRSF" in line:
@@ -56,7 +56,7 @@ def getATCommand(sock, line, device, port):
         send(sock, b"OK")
 
     if blevel != -1:
-        print(f"Battery level for {device} port {port} is {blevel}%")
+        print(f"Battery level for {device} is {blevel}%")
         return False
 
     return True
@@ -76,11 +76,11 @@ def main():
                 port = int(device[i+1:])
                 device = device[:i]
             try:
-                with socket.socket(socket.AF_BLUETOOTH,
-                        socket.SOCK_STREAM, socket.BTPROTO_RFCOMM) as s:
-                    s.connect((device, port))
-                    while getATCommand(s, s.recv(128), device, port):
-                        pass
+                s = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+                s.connect((device, port))
+                while getATCommand(s, s.recv(128), device):
+                    pass
+                s.close()
             except OSError as e:
                 print(f"{device} is offline", e)
 

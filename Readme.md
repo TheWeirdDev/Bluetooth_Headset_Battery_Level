@@ -8,7 +8,7 @@ You need python version 3.6.0 or newer to run the script.
 
 ### There are two options:
 
-##### 1. Install from PyPI
+#### 1. Install from PyPI
 
 ```bash
 pip install bluetooth_battery
@@ -16,7 +16,7 @@ pip install bluetooth_battery
 bluetooth_battery [BT_MAC_ADDRESS_1] ...
 ```
 
-##### 2. Download this repository
+#### 2. Download this repository
 
 ```bash
 chmod +x bluetooth_battery.py

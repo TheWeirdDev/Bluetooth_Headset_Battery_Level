@@ -24,7 +24,10 @@ chmod +x bluetooth_battery.py
 ./bluetooth_battery.py [BT_MAC_ADDRESS_1] ...
 ```
 
-You can input addresses for as many devices as you want separated by space.
+**You can input addresses for as many devices as you want separated by space.**
+
+_make sure you have `python-pybluez` or `python3-pybluez` installed on your system._
+_if you are using pip, install `PyBluez` instead._
 
 ### It didn't work?
 

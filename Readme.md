@@ -28,7 +28,7 @@ chmod +x bluetooth_battery.py
 
 _make sure you have `python-pybluez` or `python3-pybluez` or `python3-bluz` installed on your system._
 
-_if you are using pip, install `PyBluez` instead.___
+_if you are using pip, install `PyBluez` instead._
 
 ### It didn't work?
 

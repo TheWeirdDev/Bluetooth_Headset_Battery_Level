@@ -26,8 +26,9 @@ chmod +x bluetooth_battery.py
 
 **You can input addresses for as many devices as you want separated by space.**
 
-_make sure you have `python-pybluez` or `python3-pybluez` installed on your system._
-_if you are using pip, install `PyBluez` instead._
+_make sure you have `python-pybluez` or `python3-pybluez` or `python3-bluz` installed on your system.
+
+if you are using pip, install `PyBluez` instead._
 
 ### It didn't work?
 

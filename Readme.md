@@ -11,7 +11,7 @@ You need python version 3.6.0 or newer to run the script.
 #### 1. Install from PyPI
 
 ```bash
-pip install bluetooth_battery
+pip3 install bluetooth_battery
 
 bluetooth_battery [BT_MAC_ADDRESS_1] ...
 ```

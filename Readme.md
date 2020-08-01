@@ -5,6 +5,10 @@ This is a python script to fetch the battery charge level of some Bluetooth head
 You need python version 3.6.0 or newer to run the script.
 
 # ▶️ How to run
+Please ensure you have the BlueZ libraries and header files (libbluetooth-dev). In Debian / Ubuntu:
+```bash
+sudo apt install libbluetooth-dev
+```
 
 ### There are two options:
 
@@ -15,20 +19,19 @@ pip3 install bluetooth_battery
 
 bluetooth_battery [BT_MAC_ADDRESS_1] ...
 ```
+_the dependency `pybluez` should be installed automatically, but if not, you may need to add it manually_
 
 #### 2. Download this repository
-
 ```bash
 chmod +x bluetooth_battery.py
 
 ./bluetooth_battery.py [BT_MAC_ADDRESS_1] ...
 ```
+_make sure you have `python-pybluez` or `python3-pybluez` or `python3-bluez` installed on your system._
 
 **You can input addresses for as many devices as you want separated by space.**
 
-_make sure you have `python-pybluez` or `python3-pybluez` or `python3-bluez` installed on your system._
 
-_if you are using pip, install `PyBluez` instead._
 
 ### It didn't work?
 

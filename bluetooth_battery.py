@@ -61,17 +61,28 @@ def getATCommand(sock, line, device):
 
     return True
 
+def find_rfcomm_port(device):
+    uuid="0000111e-0000-1000-8000-00805f9b34fb"
+    proto = bluetooth.find_service(address=device, uuid=uuid)
+    if len(proto) == 0:
+        print("Couldn't find the RFCOMM port number")
+        return 4
+    else:
+        for j in range(len(proto)):
+            if 'protocol' in proto[j] and proto[j]['protocol'] == 'RFCOMM':
+                port = proto[j]['port']
+                return port
 
 def main():
     if (len(sys.argv) < 2):
         print("Usage: bl_battery.py <BT_MAC_ADDRESS_1>[.PORT] ...")
-        print("         Port number is optional (default = 4)")
+        print("         Port number is optional")
         exit()
     else:
         for device in sys.argv[1:]:
             i = device.find('.')
             if i == -1:
-                port = 4
+                port = find_rfcomm_port(device)
             else:
                 port = int(device[i+1:])
                 device = device[:i]

@@ -39,7 +39,7 @@ _make sure you have `python-pybluez` or `python3-pybluez` or `python3-bluez` ins
 
 You can set the port number manually by adding a dot at the end of mac address, like this: `00:00:00:00:00:00.3`
 
-Try port numbers `1 to 9` to find the one that works for your device. (wait a few seconds between each try)
+Try port numbers `1 to 30` to find the one that works for your device. (wait a few seconds between each try)
 
 If that didn't work, disconnect your device first, and then try again.
 

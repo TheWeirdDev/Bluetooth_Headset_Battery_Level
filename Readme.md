@@ -65,6 +65,24 @@ ETH: `0xb6178080c8f0792e6370959909199647e26b8457`
 
 Thank you!
 
+# Thanks
+
+Special thanks to:
+
+[@clst](https://github.com/clst): For spreading the word!
+
+[@bhepple](https://github.com/bhepple): For his research on fixing the ultimate bug
+
+[@balsoft](https://github.com/balsoft): For thinking outside the box (finding my big mistake)
+
+[@martin-beran](https://github.com/martin-beran): For making it easy to set the port number
+
+[@Bobo1239](https://github.com/Bobo1239): For adding support for Samsung galaxy buds
+
+[@keystroke3](https://github.com/keystroke3): For adding multiple device support to the script
+
+❤️ And everyone else that pointed out the issues or helped me with writing the code or testing it.
+
 # 📜 License
 
 This project is a free software licensed under GPL-3.0 or newer.

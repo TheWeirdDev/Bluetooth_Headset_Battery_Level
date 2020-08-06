@@ -65,7 +65,7 @@ ETH: `0xb6178080c8f0792e6370959909199647e26b8457`
 
 Thank you!
 
-# Thanks
+# 🤝 Thanks
 
 Special thanks to:
 

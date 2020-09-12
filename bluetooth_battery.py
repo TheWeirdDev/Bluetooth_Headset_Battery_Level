@@ -75,7 +75,7 @@ def find_rfcomm_port(device):
 
 def main():
     if (len(sys.argv) < 2):
-        print("Usage: bl_battery.py <BT_MAC_ADDRESS_1>[.PORT] ...")
+        print("Usage: bluetooth_battery.py BT_MAC_ADDRESS_1.PORT ...")
         print("         Port number is optional")
         exit()
     else:

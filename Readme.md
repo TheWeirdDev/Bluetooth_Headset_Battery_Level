@@ -14,6 +14,14 @@ Please ensure you have the BlueZ and python libraries and header files if you ar
 sudo apt install libbluetooth-dev python3-dev
 ```
 
+If you are using OpenSUSE, you will need to install these packages:
+```bash
+bluez
+bluez-devel 
+python3-devel
+python3-pybluez
+```
+
 Then, install with pip:
 ```bash
 pip3 install bluetooth_battery

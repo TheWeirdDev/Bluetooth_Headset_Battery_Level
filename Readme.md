@@ -31,6 +31,13 @@ bluetooth_battery BT_MAC_ADDRESS_1 ...
 _the dependency `pybluez` should be installed automatically, but if not, you may need to install it manually_
 
 #### 2. Download this repository
+
+Install dependencies with:
+```bash
+sh setup.sh
+```
+
+Then run:
 ```bash
 chmod +x bluetooth_battery.py
 

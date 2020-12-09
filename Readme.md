@@ -17,7 +17,7 @@ sudo apt install libbluetooth-dev python3-dev
 If you are using OpenSUSE, you will need to install these packages:
 ```bash
 bluez
-bluez-devel 
+bluez-devel
 python3-devel
 python3-pybluez
 ```

@@ -82,6 +82,7 @@ You can open a new issue for discussion or check the existing ones for more info
 ## Tested on
 
 - [x] Linux (ArchLinux 5.6.14)
+- [x] Debian GNU/Linux (bullseye 5.9)
 
 # 💸 Donate
 

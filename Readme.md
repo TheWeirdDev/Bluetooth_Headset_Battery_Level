@@ -41,7 +41,29 @@ _make sure you have `python-pybluez` or `python3-pybluez` or `python3-bluez` ins
 
 **You can input addresses for as many devices as you want separated by space.**
 
+### Finding MAC address
 
+There are a variety of utilities that can find the MAC address of your bluetooth device.  Here is one, this command is in the `bluez` package, and the given argument gets a list of all devices it knows about, even if not currently available.
+```
+$ bluetoothctl devices
+Device E8:AB:FA:27:9E:DE iTeknic IK-BH002
+Device D0:77:14:3A:2C:24 Barak's Moto X4
+Device E8:AB:FA:27:9F:49 iTeknic IK-BH002
+```
+The 1st and 3rd would be relevant here, as those are headsets. But if you try to get the battery level of a device that's not currently connected, there is a very long pause until the query times out.
+
+This shows devices that are actually connected.
+```
+$ bluetoothctl info
+Device E8:AB:FA:27:9E:DE (public)
+	Name: iTeknic IK-BH002
+	...
+```
+So you can use
+```
+bluetooth_battery.py $(bluetoothctl info | awk '/^Device/ {print $2}')
+```
+to query the battery of all connected devices.
 
 ### It didn't work?
 

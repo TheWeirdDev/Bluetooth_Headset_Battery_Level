@@ -52,6 +52,9 @@ def getATCommand(sock, line, device):
         params = line.strip().split(b"=")[1].split(b",")
         if params[0] == b"2":
             blevel = int(params[1])
+    elif b"XEVENT=BATTERY" in line:
+        params = line.strip().split(b"=")[1].split(b",")
+        blevel = int(params[1]) / int(params[2]) * 100
     else:
         send(sock, b"OK")
 

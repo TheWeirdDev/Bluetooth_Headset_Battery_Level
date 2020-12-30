@@ -17,7 +17,7 @@ sudo apt install libbluetooth-dev python3-dev
 If you are using OpenSUSE, you will need to install these packages:
 ```bash
 bluez
-bluez-devel 
+bluez-devel
 python3-devel
 python3-pybluez
 ```
@@ -41,8 +41,6 @@ _make sure you have `python-pybluez` or `python3-pybluez` or `python3-bluez` ins
 
 **You can input addresses for as many devices as you want separated by space.**
 
-
-
 ### It didn't work?
 
 You can set the port number manually by adding a dot at the end of mac address, like this: `00:00:00:00:00:00.3`
@@ -59,7 +57,8 @@ You can open a new issue for discussion or check the existing ones for more info
 
 ## Tested on
 
-- [x] Linux (ArchLinux 5.6.14)
+- [x] ArchLinux (5.6.14)
+- [x] NixOS 20.09 (20.09.2386.ae1b121d9a6)
 
 # 💸 Donate
 

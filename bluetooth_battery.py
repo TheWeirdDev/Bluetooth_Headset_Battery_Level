@@ -77,11 +77,11 @@ def find_rfcomm_port(device):
         print("Couldn't find the RFCOMM port number")
         return 4
 
-    for j, _ in enumerate(proto):
-        if 'protocol' in proto[j] and proto[j]['protocol'] == 'RFCOMM':
-            port = proto[j]['port']
+    for pr in proto:
+        if 'protocol' in pr and pr['protocol'] == 'RFCOMM':
+            port = pr['port']
             return port
-    return -1
+    return 4
 
 
 def main():

@@ -6,7 +6,7 @@ You need python 3.6 or newer to run the script.
 
 # ▶️ How to run
 
-### There are two options:
+### There are three options:
 
 #### 1. Install from PyPI
 Please ensure you have the BlueZ and python libraries and header files if you are using Ubuntu/Debian based distros:
@@ -41,6 +41,28 @@ _make sure you have `python-pybluez` or `python3-pybluez` or `python3-bluez` ins
 
 **You can input addresses for as many devices as you want separated by space.**
 
+#### 3. Docker
+
+You must have docker installed on your system.
+Use the below command to install or refer to [this guide](https://docs.docker.com/engine/install/).
+
+```bash
+curl -fsSL get.docker.com | sudo bash
+```
+
+Clone the repository using `git clone` command.
+
+```bash
+cd Bluetooth_Headset_Battery_Level && \
+docker build -t bluetooth_battery_level .
+```
+
+Once the build is complete you can use the below command to run the program:
+
+```bash
+docker run --rm -ti --privileged --net=host bluetooth_battery_level "BT_MAC_ADDRESS"
+#docker run --rm -ti --privileged --net=host bluetooth_battery_level "E2:41:23:5C:4F:27"
+```
 ### It didn't work?
 
 You can set the port number manually by adding a dot at the end of mac address, like this: `00:00:00:00:00:00.3`

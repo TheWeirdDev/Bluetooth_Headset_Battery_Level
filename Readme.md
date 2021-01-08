@@ -27,6 +27,8 @@ bluetooth_battery BT_MAC_ADDRESS_1 ...
 
 _the dependency `pybluez` should be installed automatically, but if not, you may need to install it manually_
 
+--------
+
 ### Option 2: Download this repository
 
 ```bash
@@ -37,6 +39,8 @@ chmod +x bluetooth_battery.py
 ```
 
 _make sure you have `python-pybluez` or `python3-pybluez` or `python3-bluez` installed on your system._
+
+--------
 
 ### Option 3: Docker
 
@@ -53,6 +57,8 @@ Once the build is complete you can use the below command to run the program:
 ```bash
 docker run --rm -ti --privileged --net=host bluetooth_battery_level "BT_MAC_ADDRESS"
 ```
+
+--------
 
 ### It didn't work?
 

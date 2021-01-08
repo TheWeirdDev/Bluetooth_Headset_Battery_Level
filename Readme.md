@@ -55,7 +55,6 @@ Once the build is complete you can use the below command to run the program:
 
 ```bash
 docker run --rm -ti --privileged --net=host bluetooth_battery_level "BT_MAC_ADDRESS"
-#docker run --rm -ti --privileged --net=host bluetooth_battery_level "E2:41:23:5C:4F:27"
 ```
 ### It didn't work?
 

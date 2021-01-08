@@ -44,12 +44,6 @@ _make sure you have `python-pybluez` or `python3-pybluez` or `python3-bluez` ins
 #### 3. Docker
 
 You must have docker installed on your system.
-Use the below command to install or refer to [this guide](https://docs.docker.com/engine/install/).
-
-```bash
-curl -fsSL get.docker.com | sudo bash
-```
-
 Clone the repository using `git clone` command.
 
 ```bash

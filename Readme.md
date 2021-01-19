@@ -65,16 +65,16 @@ docker run --rm -ti --privileged --net=host bluetooth_battery_level "BT_MAC_ADDR
 There are a variety of utilities that can find the MAC address of your bluetooth device.  Here is one, this command is in the `bluez` package, and the given argument gets a list of all devices it knows about, even if not currently available.
 ```
 $ bluetoothctl devices
-Device E8:AB:FA:27:9E:DE iTeknic IK-BH002
-Device D0:77:14:3A:2C:24 Barak's Moto X4
-Device E8:AB:FA:27:9F:49 iTeknic IK-BH002
+Device E8:AB:FA:XX:XX:XX iTeknic IK-BH002
+Device D0:77:14:XX:XX:XX Barak's Moto X4
+Device E8:AB:FA:XX:XX:XX iTeknic IK-BH002
 ```
 The 1st and 3rd would be relevant here, as those are headsets. But if you try to get the battery level of a device that's not currently connected, there is a very long pause until the query times out.
 
 This shows devices that are actually connected.
 ```
 $ bluetoothctl info
-Device E8:AB:FA:27:9E:DE (public)
+Device E8:AB:FA:XX:XX:XX (public)
 	Name: iTeknic IK-BH002
 	...
 ```

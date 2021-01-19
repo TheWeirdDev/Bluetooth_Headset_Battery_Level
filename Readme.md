@@ -6,21 +6,15 @@ You need python 3.6 or newer to run the script.
 
 # ▶️ How to run
 
-### There are two options:
+### There are three options:
 
-#### 1. Install from PyPI
+### Option 1: Install from PyPI
 Please ensure you have the BlueZ and python libraries and header files if you are using Ubuntu/Debian based distros:
 ```bash
 sudo apt install libbluetooth-dev python3-dev
 ```
 
-If you are using OpenSUSE, you will need to install these packages:
-```bash
-bluez
-bluez-devel
-python3-devel
-python3-pybluez
-```
+If you are using *OpenSUSE*, you will need to install `bluez`, `bluez-devel`, `python3-devel`, `python3-pybluez`
 
 Then, install with pip:
 ```bash
@@ -28,10 +22,17 @@ pip3 install bluetooth_battery
 
 bluetooth_battery BT_MAC_ADDRESS_1 ...
 ```
+
+**You can input addresses for as many devices as you want separated by space.**
+
 _the dependency `pybluez` should be installed automatically, but if not, you may need to install it manually_
 
-#### 2. Download this repository
+--------
+
+### Option 2: Download this repository
+
 ```bash
+cd Bluetooth_Headset_Battery_Level
 chmod +x bluetooth_battery.py
 
 ./bluetooth_battery.py BT_MAC_ADDRESS_1 ...
@@ -39,7 +40,25 @@ chmod +x bluetooth_battery.py
 
 _make sure you have `python-pybluez` or `python3-pybluez` or `python3-bluez` installed on your system._
 
-**You can input addresses for as many devices as you want separated by space.**
+--------
+
+### Option 3: Docker
+
+You must have docker installed on your system.
+Clone the repository using `git clone` command. Then run:
+
+```bash
+cd Bluetooth_Headset_Battery_Level
+docker build -t bluetooth_battery_level .
+```
+
+Once the build is complete you can use the below command to run the program:
+
+```bash
+docker run --rm -ti --privileged --net=host bluetooth_battery_level "BT_MAC_ADDRESS"
+```
+
+--------
 
 ### Finding MAC address
 
@@ -71,7 +90,7 @@ You can set the port number manually by adding a dot at the end of mac address, 
 
 Try port numbers `1 to 30` to find the one that works for your device. (wait a few seconds between each try)
 
-If that didn't work, disconnect your device first, and then try again.
+If that didn't work, **disconnect your device first**, and then try again.
 
 ### Still doesn't work?
 
@@ -81,7 +100,8 @@ You can open a new issue for discussion or check the existing ones for more info
 
 ## Tested on
 
-- [x] Linux (ArchLinux 5.6.14)
+- [x] ArchLinux (5.6.14)
+- [x] NixOS 20.09 (20.09.2386.ae1b121d9a6)
 - [x] Debian GNU/Linux (bullseye 5.9)
 
 # 💸 Donate
@@ -94,7 +114,7 @@ BCH: `qzzmzegfy76r5glpj26jzq2xly2cczsmfyrn66ax8q`
 
 ETH: `0xb6178080c8f0792e6370959909199647e26b8457`
 
-Thank you!
+**Thank you!**
 
 # 🤝 Thanks
 
@@ -102,7 +122,7 @@ Special thanks to:
 
 [@clst](https://github.com/clst): For spreading the word!
 
-[@bhepple](https://github.com/bhepple): For his research on fixing the ultimate bug
+[@bhepple](https://github.com/bhepple): For his research on fixing the important bug
 
 [@balsoft](https://github.com/balsoft): For thinking outside the box (finding my big mistake)
 
@@ -112,8 +132,10 @@ Special thanks to:
 
 [@keystroke3](https://github.com/keystroke3): For adding multiple device support to the script
 
+[@jadia](https://github.com/jadia): For docker container support
+
 ❤️ And everyone else that pointed out the issues or helped me with writing the code or testing it.
 
 # 📜 License
 
-This project is a free software licensed under GPL-3.0 or newer.
+This project is a free software licensed under GPL-3.0 or newer. For more information see [LICENSE](LICENSE)

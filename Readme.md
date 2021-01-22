@@ -80,7 +80,7 @@ Device E8:AB:FA:XX:XX:XX (public)
 ```
 So you can use
 ```
-bluetooth_battery.py $(bluetoothctl info | awk '/^Device/ {print $2}')
+bluetooth_battery.py $(bluetoothctl devices | awk '/^Device/ {print $2}')
 ```
 to query the battery of all connected devices.
 

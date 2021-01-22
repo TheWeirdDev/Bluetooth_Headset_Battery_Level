@@ -60,6 +60,30 @@ docker run --rm -ti --privileged --net=host bluetooth_battery_level "BT_MAC_ADDR
 
 --------
 
+### Finding MAC address
+
+There are a variety of utilities that can find the MAC address of your bluetooth device.  Here is one, this command is in the `bluez` package, and the given argument gets a list of all devices it knows about, even if not currently available.
+```
+$ bluetoothctl devices
+Device E8:AB:FA:XX:XX:XX iTeknic IK-BH002
+Device D0:77:14:XX:XX:XX Barak's Moto X4
+Device E8:AB:FA:XX:XX:XX iTeknic IK-BH002
+```
+The 1st and 3rd would be relevant here, as those are headsets.
+
+This shows devices that are actually connected.
+```
+$ bluetoothctl info
+Device E8:AB:FA:XX:XX:XX (public)
+	Name: iTeknic IK-BH002
+	...
+```
+So you can use
+```
+bluetooth_battery.py $(bluetoothctl devices | awk '/^Device/ {print $2}')
+```
+to query the battery of all connected devices.
+
 ### It didn't work?
 
 You can set the port number manually by adding a dot at the end of mac address, like this: `00:00:00:00:00:00.3`
@@ -78,6 +102,7 @@ You can open a new issue for discussion or check the existing ones for more info
 
 - [x] ArchLinux (5.6.14)
 - [x] NixOS 20.09 (20.09.2386.ae1b121d9a6)
+- [x] Debian GNU/Linux (bullseye 5.9)
 
 # 💸 Donate
 

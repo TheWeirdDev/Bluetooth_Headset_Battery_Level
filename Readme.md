@@ -69,7 +69,7 @@ Device E8:AB:FA:XX:XX:XX iTeknic IK-BH002
 Device D0:77:14:XX:XX:XX Barak's Moto X4
 Device E8:AB:FA:XX:XX:XX iTeknic IK-BH002
 ```
-The 1st and 3rd would be relevant here, as those are headsets. But if you try to get the battery level of a device that's not currently connected, there is a very long pause until the query times out.
+The 1st and 3rd would be relevant here, as those are headsets.
 
 This shows devices that are actually connected.
 ```

@@ -134,6 +134,8 @@ Special thanks to:
 
 [@jadia](https://github.com/jadia): For docker container support
 
+[@cheriimoya](https://github.com/cheriimoya): For refactoring the code and providing NixOS packages
+
 ❤️ And everyone else that pointed out the issues or helped me with writing the code or testing it.
 
 # 📜 License

@@ -60,6 +60,11 @@ docker run --rm -ti --privileged --net=host bluetooth_battery_level "BT_MAC_ADDR
 
 --------
 
+### GNOME Extension
+
+There is also a GNOME extension for integrating this program with GNOME desktop environment:
+https://extensions.gnome.org/extension/3991/bluetooth-battery/
+
 ### Finding MAC address
 
 There are a variety of utilities that can find the MAC address of your bluetooth device.  Here is one, this command is in the `bluez` package, and the given argument gets a list of all devices it knows about, even if not currently available.
@@ -135,6 +140,8 @@ Special thanks to:
 [@jadia](https://github.com/jadia): For docker container support
 
 [@cheriimoya](https://github.com/cheriimoya): For refactoring the code and providing NixOS packages
+
+[@MichalW](https://github.com/MichalW): For making the GNOME shell extension
 
 ❤️ And everyone else that pointed out the issues or helped me with writing the code or testing it.
 

@@ -19,7 +19,7 @@ def send(sock, message):
     sock.send(b"\r\n" + message + b"\r\n")
 
 
-def get_at_command(sock, line, device):
+def get_battery_level(sock, line, device):
     """
     Will try to get and print the battery level of supported devices
     """
@@ -64,10 +64,9 @@ def get_at_command(sock, line, device):
         send(sock, b"OK")
 
     if blevel != -1:
-        print(f"Battery level for {device} is {blevel}%")
-        return False
+        return blevel
 
-    return True
+    return None
 
 
 def find_rfcomm_port(device):
@@ -108,9 +107,11 @@ def main():
             try:
                 sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
                 sock.connect((device, port))
-                while get_at_command(sock, sock.recv(128), device):
-                    pass
+                blevel = None
+                while blevel is None:
+                    blevel = get_battery_level(sock, sock.recv(128), device)
                 sock.close()
+                print(f"Battery level for {device} is {blevel}%")
             except OSError as err:
                 print(f"{device} is offline", err)
 

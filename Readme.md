@@ -104,18 +104,6 @@ You can open a new issue for discussion or check the existing ones for more info
 - [x] NixOS 20.09 (20.09.2386.ae1b121d9a6)
 - [x] Debian GNU/Linux (bullseye 5.9)
 
-# 💸 Donate
-
-You can donate if you like this project :)
-
-BTC: `1KXJPJSmXUocieC3neRZEDakpzfcyumLqS`
-
-BCH: `qzzmzegfy76r5glpj26jzq2xly2cczsmfyrn66ax8q`
-
-ETH: `0xb6178080c8f0792e6370959909199647e26b8457`
-
-**Thank you!**
-
 # 🤝 Thanks
 
 Special thanks to:

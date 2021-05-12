@@ -44,7 +44,7 @@ def get_at_command(sock, line, device):
         send(sock, b"+BIND: 2,1")
         send(sock, b"OK")
     elif b"XAPL=" in line:
-        send(sock, b"+XAPL: iPhone,7")
+        send(sock, b"+XAPL=iPhone,7")
         send(sock, b"OK")
     elif b"IPHONEACCEV" in line:
         parts = line.strip().split(b',')[1:]

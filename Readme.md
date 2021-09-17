@@ -108,6 +108,7 @@ You can open a new issue for discussion or check the existing ones for more info
 - [x] ArchLinux (5.6.14)
 - [x] NixOS 20.09 (20.09.2386.ae1b121d9a6)
 - [x] Debian GNU/Linux (bullseye 5.9)
+- [x] Ubuntu/Linux (Focal Fossa 20.04.1)
 
 # 🤝 Thanks
 

@@ -60,6 +60,15 @@ docker run --rm -ti --privileged --net=host bluetooth_battery_level "BT_MAC_ADDR
 
 --------
 
+### Option 4: AUR
+
+You must have AUR access enabled on your Arch or Manjaro machine.
+You can install this library using
+
+```bash
+yay -S bluetooth-headset-battery-level-git
+```
+
 ### GNOME Extension
 
 There is also a GNOME extension for integrating this program with GNOME desktop environment:
@@ -106,6 +115,7 @@ You can open a new issue for discussion or check the existing ones for more info
 ## Tested on
 
 - [x] ArchLinux (5.6.14)
+- [x] Manjaro (5.14.10)
 - [x] NixOS 20.09 (20.09.2386.ae1b121d9a6)
 - [x] Debian GNU/Linux (bullseye 5.9)
 - [x] Ubuntu/Linux (Focal Fossa 20.04.1)

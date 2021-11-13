@@ -148,7 +148,7 @@ class BatteryStateQuerier:
         return result
 
 
-if __name__ == "__main__":
+def main():
     """
     The starting point of the program. For each device address in the argument
     list a bluetooth socket will be opened and the battery level will be read
@@ -161,3 +161,6 @@ if __name__ == "__main__":
     for device in args.devices:
         query = BatteryStateQuerier(*device.split("."))
         print("Battery level for {} is {}".format(device, str(query)))
+
+if __name__ == "__main__":
+    main()

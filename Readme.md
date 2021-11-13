@@ -6,7 +6,7 @@ You need python 3.6 or newer to run the script.
 
 # ▶️ How to run
 
-### There are three options:
+### There are four options:
 
 ### Option 1: Install from PyPI
 Please ensure you have the BlueZ and python libraries and header files if you are using Ubuntu/Debian based distros:
@@ -67,6 +67,43 @@ You can install this library using
 
 ```bash
 yay -S bluetooth-headset-battery-level-git
+```
+
+--------
+
+### Library usage
+
+To use this as a library, simply install it using pip or AUR (see above) or require it in your Pipfile.  
+You can then
+```python
+from bluetooth_battery import BatteryStateQuerier, BatteryQueryError, BluetoothError
+                                                   # only for error handling
+```
+and query the Battery State as follows:
+```python
+# Autodetects SPP port
+query = BatteryStateQuerier("11:22:33:44:55:66")
+# or with given port
+query = BatteryStateQuerier("11:22:33:44:55:66", "4")
+
+result = int(query)  # returns integer between 0 and 100
+# or
+result = str(query)  # returns "0%".."100%"
+```
+
+As errors can occur in a wireless system, you probably want to handle them:
+
+```python
+try:
+    query = BatteryStateQuerier("11:22:33:44:55:66")  # Can raise BluetoothError when autodetecting port
+    str(query)                                        # Can raise BluetoothError when device is down or port is wrong
+                                                      # Can raise BatteryQueryError when the device is unsupported
+except BluetoothError as e:
+    # Handle device is offline
+    ...
+except BatteryQueryError as e:
+    # Handle device is unsupported
+    ...
 ```
 
 ### GNOME Extension

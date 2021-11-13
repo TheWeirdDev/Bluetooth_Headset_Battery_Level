@@ -180,6 +180,8 @@ Special thanks to:
 
 [@MichalW](https://github.com/MichalW): For making the GNOME shell extension
 
+[@GaLaXy102](https://github.com/GaLaXy102): For re-writing the code, making it cleaner and usable as a library
+
 ❤️ And everyone else that pointed out the issues or helped me with writing the code or testing it.
 
 # 📜 License

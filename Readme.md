@@ -6,7 +6,7 @@ You need python 3.6 or newer to run the script.
 
 # ▶️ How to run
 
-### There are three options:
+### There are four options:
 
 ### Option 1: Install from PyPI
 Please ensure you have the BlueZ and python libraries and header files if you are using Ubuntu/Debian based distros:
@@ -60,6 +60,52 @@ docker run --rm -ti --privileged --net=host bluetooth_battery_level "BT_MAC_ADDR
 
 --------
 
+### Option 4: AUR
+
+You must have AUR access enabled on your Arch or Manjaro machine.
+You can install this library using
+
+```bash
+yay -S bluetooth-headset-battery-level-git
+```
+
+--------
+
+### Library usage
+
+To use this as a library, simply install it using pip or AUR (see above) or require it in your Pipfile.  
+You can then
+```python
+from bluetooth_battery import BatteryStateQuerier, BatteryQueryError, BluetoothError
+                                                   # only for error handling
+```
+and query the Battery State as follows:
+```python
+# Autodetects SPP port
+query = BatteryStateQuerier("11:22:33:44:55:66")
+# or with given port
+query = BatteryStateQuerier("11:22:33:44:55:66", "4")
+
+result = int(query)  # returns integer between 0 and 100
+# or
+result = str(query)  # returns "0%".."100%"
+```
+
+As errors can occur in a wireless system, you probably want to handle them:
+
+```python
+try:
+    query = BatteryStateQuerier("11:22:33:44:55:66")  # Can raise BluetoothError when autodetecting port
+    str(query)                                        # Can raise BluetoothError when device is down or port is wrong
+                                                      # Can raise BatteryQueryError when the device is unsupported
+except BluetoothError as e:
+    # Handle device is offline
+    ...
+except BatteryQueryError as e:
+    # Handle device is unsupported
+    ...
+```
+
 ### GNOME Extension
 
 There is also a GNOME extension for integrating this program with GNOME desktop environment:
@@ -106,6 +152,7 @@ You can open a new issue for discussion or check the existing ones for more info
 ## Tested on
 
 - [x] ArchLinux (5.6.14)
+- [x] Manjaro (5.14.10)
 - [x] NixOS 20.09 (20.09.2386.ae1b121d9a6)
 - [x] Debian GNU/Linux (bullseye 5.9)
 - [x] Ubuntu/Linux (Focal Fossa 20.04.1)

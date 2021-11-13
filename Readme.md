@@ -66,7 +66,7 @@ You must have AUR access enabled on your Arch or Manjaro machine.
 You can install this library using
 
 ```bash
-yay -S bluetooth-headset-battery-level-git
+yay -S python-bluetooth-battery
 ```
 
 --------

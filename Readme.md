@@ -111,6 +111,11 @@ except BatteryQueryError as e:
 There is also a GNOME extension for integrating this program with GNOME desktop environment:
 https://extensions.gnome.org/extension/3991/bluetooth-battery/
 
+### Budgie Applet
+
+There is also a Budgie extension for integrating this program with Budgie desktop environment:
+https://github.com/GaLaXy102/budgie-bluetooth-battery-applet
+
 ### Finding MAC address
 
 There are a variety of utilities that can find the MAC address of your bluetooth device.  Here is one, this command is in the `bluez` package, and the given argument gets a list of all devices it knows about, even if not currently available.

@@ -158,7 +158,7 @@ bluetooth_battery.py $(bluetoothctl info | awk '/^Device/ {print $2}')
 ```
 to query the battery of all connected devices.
 
-### It didn't work?
+## It didn't work?
 
 You can set the port number manually by adding a dot at the end of mac address, like this: `00:00:00:00:00:00.3`
 
@@ -166,7 +166,7 @@ Try port numbers `1 to 30` to find the one that works for your device. (wait a f
 
 If that didn't work, **disconnect your device first**, and then try again.
 
-### Still doesn't work?
+## Still doesn't work?
 
 Please consider that this script doesn't guarantee to support every bluetooth device.
 

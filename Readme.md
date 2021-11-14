@@ -66,7 +66,7 @@ You must have AUR access enabled on your Arch or Manjaro machine.
 You can install this library using
 
 ```bash
-yay -S bluetooth-headset-battery-level-git
+yay -S python-bluetooth-battery
 ```
 
 --------
@@ -110,6 +110,11 @@ except BatteryQueryError as e:
 
 There is also a GNOME extension for integrating this program with GNOME desktop environment:
 https://extensions.gnome.org/extension/3991/bluetooth-battery/
+
+### Budgie Applet
+
+There is also a Budgie extension for integrating this program with Budgie desktop environment:
+https://github.com/GaLaXy102/budgie-bluetooth-battery-applet
 
 ### Finding MAC address
 

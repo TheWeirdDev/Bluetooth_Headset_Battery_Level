@@ -4,6 +4,24 @@ This is a python script to fetch the battery charge level of some Bluetooth head
 
 You need python 3.6 or newer to run the script.
 
+Table of Contents
+=================
+
+* [How to run](#️-how-to-run)
+    * [Option 1: Install from PyPI](#option-1-install-from-pypi)
+    * [Option 2: Download this repository](#option-2-download-this-repository)
+    * [Option 3: Docker](#option-3-docker)
+    * [Option 4: AUR](#option-4-aur)
+* [Library usage](#library-usage)
+* [GNOME Extension](#gnome-extension)
+* [Budgie Applet](#budgie-applet)
+* [Finding MAC address](#finding-mac-address)
+* [It didn't work?](#it-didnt-work)
+* [Still doesn't work?](#still-doesnt-work)
+* [Tested on](#tested-on)
+* [Thanks](#-thanks)
+* [License](#-license)
+
 # ▶️ How to run
 
 ### There are four options:

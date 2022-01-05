@@ -1,11 +1,14 @@
-FROM python:3.9 AS build-stage
+# Builder
+FROM python:3.9-slim-bullseye as builder
+RUN apt update && apt install -y build-essential bluetooth libbluetooth-dev
 WORKDIR /app
-COPY . .
-RUN pip3 install pybluez pyinstaller
-RUN pyinstaller -w -F \
-	--noconfirm \
-	bluetooth_battery.py
+RUN pip3 wheel --no-cache-dir --no-deps --wheel-dir /app/wheel/ pybluez
 
-FROM debian:buster-slim AS deploy-stage
-COPY --from=build-stage /app/dist/bluetooth_battery /bluetooth_battery
-ENTRYPOINT ["/bluetooth_battery"]
+### Final
+FROM python:3.9-slim-bullseye
+RUN apt update && apt install -y libbluetooth3
+WORKDIR /app
+COPY --from=builder /app/wheel /wheels
+RUN pip3 install --no-cache /wheels/*
+COPY ./bluetooth_battery.py .
+ENTRYPOINT ["python3", "./bluetooth_battery.py"]

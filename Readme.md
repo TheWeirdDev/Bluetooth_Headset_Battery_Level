@@ -28,14 +28,14 @@ Table of Contents
 
 ### Option 1: Install from PyPI
 Please ensure you have the BlueZ and python libraries and header files if you are using Ubuntu/Debian based distros:
-```bash
+```console
 sudo apt install libbluetooth-dev python3-dev
 ```
 
 If you are using *OpenSUSE*, you will need to install `bluez`, `bluez-devel`, `python3-devel`, `python3-pybluez`
 
 Then, install with pip:
-```bash
+```console
 pip3 install bluetooth_battery
 
 bluetooth_battery BT_MAC_ADDRESS_1 ...
@@ -49,7 +49,7 @@ _the dependency `pybluez` should be installed automatically, but if not, you may
 
 ### Option 2: Download this repository
 
-```bash
+```console
 cd Bluetooth_Headset_Battery_Level
 chmod +x bluetooth_battery.py
 
@@ -65,14 +65,14 @@ _make sure you have `python-pybluez` or `python3-pybluez` or `python3-bluez` ins
 You must have docker installed on your system.
 Clone the repository using `git clone` command. Then run:
 
-```bash
+```console
 cd Bluetooth_Headset_Battery_Level
 docker build -t bluetooth_battery_level .
 ```
 
 Once the build is complete you can use the below command to run the program:
 
-```bash
+```console
 docker run --rm -ti --privileged --net=host bluetooth_battery_level "BT_MAC_ADDRESS"
 ```
 
@@ -83,7 +83,7 @@ docker run --rm -ti --privileged --net=host bluetooth_battery_level "BT_MAC_ADDR
 You must have AUR access enabled on your Arch or Manjaro machine.
 You can install this library using
 
-```bash
+```console
 yay -S python-bluetooth-battery
 ```
 
@@ -146,14 +146,14 @@ Device E8:AB:FA:XX:XX:XX iTeknic IK-BH002
 The 1st and 3rd would be relevant here, as those are headsets.
 
 This shows devices that are actually connected.
-```
+```console
 $ bluetoothctl info
 Device E8:AB:FA:XX:XX:XX (public)
 	Name: iTeknic IK-BH002
 	...
 ```
 So you can use
-```
+```console
 bluetooth_battery.py $(bluetoothctl info | awk '/^Device/ {print $2}')
 ```
 to query the battery of all connected devices.

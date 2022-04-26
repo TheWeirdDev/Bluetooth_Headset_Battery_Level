@@ -10,6 +10,7 @@ A python library to get battery level from Bluetooth headsets
 
 import argparse
 import bluetooth
+import pydbus
 from typing import Optional, Union, List, Dict
 
 
@@ -148,19 +149,42 @@ class BatteryStateQuerier:
         return result
 
 
+def return_connected_devices(mngr):
+    result={}
+    mngd_objs = mngr.GetManagedObjects()
+    for path in mngd_objs:
+        con_state = mngd_objs[path].get('org.bluez.Device1', {}).get('Connected', False)
+        if con_state:
+            addr = mngd_objs[path].get('org.bluez.Device1', {}).get('Address')
+            name = mngd_objs[path].get('org.bluez.Device1', {}).get('Name')
+            result[addr] = name
+    return result
+
+
 def main():
     """
     The starting point of the program. For each device address in the argument
     list a bluetooth socket will be opened and the battery level will be read
     and printed to stdout
     """
+    bus = pydbus.SystemBus()
+
+    adapter = bus.get('org.bluez', '/org/bluez/hci0')
+    mngr = bus.get('org.bluez', '/')
     parser = argparse.ArgumentParser(description="Get battery level from Bluetooth headsets")
-    parser.add_argument("devices", metavar="DEVICE_MAC[.PORT]", type=str, nargs="+",
+    parser.add_argument("-a","--all",action="store_true",help="Show battery of all connected devices")
+    parser.add_argument("--devices", metavar="DEVICE_MAC[.PORT]", type=str, nargs="+",
                         help="(MAC address of target)[.SPP Port]")
     args = parser.parse_args()
-    for device in args.devices:
-        query = BatteryStateQuerier(*device.split("."))
-        print("Battery level for {} is {}".format(device, str(query)))
+    if args.devices:
+        for device in args.devices:
+            query = BatteryStateQuerier(*device.split("."))
+            print("Battery level for {} is {}".format(device, str(query)))
+    if args.all:
+        result = return_connected_devices(mngr)
+        for key in result:
+            query = BatteryStateQuerier(key)
+            print("Battery level for {} is {}".format(result[key], str(query)))
 
 if __name__ == "__main__":
     main()

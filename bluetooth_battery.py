@@ -105,10 +105,10 @@ class BatteryStateQuerier:
                 sock.send(b"+BRSF: 1024")
                 sock.send(b"OK")
             elif b"CIND=" in line:
-                sock.send(b"+CIND: (\"battchg\",(0-5))")
+                sock.send(b"+CIND:(\"service\",(0-1)),(\"call\",(0-1)),(\"callsetup\",(0-3)),(\"callheld\",(0-2)),(\"battchg\",(0-5))")
                 sock.send(b"OK")
             elif b"CIND?" in line:
-                sock.send(b"+CIND: 5")
+                sock.send(b"+CIND: 0,0,0,0,3")
                 sock.send(b"OK")
             elif b"BIND=?" in line:
                 # Announce that we support the battery level HF indicator

@@ -27,7 +27,7 @@ Table of Contents
 ### There are four options:
 
 ### Option 1: Install from PyPI
-Please ensure you have the BlueZ and python libraries and header files if you are using Ubuntu/Debian based distros:
+Please ensure you have the BlueZ, pydbus and python libraries and header files if you are using Ubuntu/Debian based distros:
 ```console
 sudo apt install libbluetooth-dev python3-dev
 ```
@@ -56,7 +56,7 @@ chmod +x bluetooth_battery.py
 ./bluetooth_battery.py BT_MAC_ADDRESS_1 ...
 ```
 
-_make sure you have `python-pybluez` or `python3-pybluez` or `python3-bluez` installed on your system._
+_make sure you have `python-pybluez` or `python3-pybluez` or `python3-bluez` and `python3-pydbus` installed on your system._
 
 --------
 

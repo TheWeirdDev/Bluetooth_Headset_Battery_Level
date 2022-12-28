@@ -87,6 +87,9 @@ You can install this library using
 yay -S python-bluetooth-battery
 ```
 
+_the dependency `pybluez` should be installed automatically, but if not, you may need to install it manually_  
+This can be done with `pip3 install git+https://github.com/pybluez/pybluez@master`.
+
 --------
 
 ## Library usage

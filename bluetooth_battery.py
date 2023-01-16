@@ -137,7 +137,12 @@ class BatteryStateQuerier:
                     break
             elif b"XEVENT=BATTERY" in line:
                 params = line.strip().split(b"=")[1].split(b",")
-                result = int(params[1]) / int(params[2]) * 100
+                if len(params) >= 3:
+                    # AT+XEVENT=BATTERY,6,11,461,0
+                    result = int(params[1]) / int(params[2]) * 100
+                else:
+                    # AT+XEVENT=BATTERY,9
+                    result = (int(params[1]) + 1) * 10
                 break
             else:
                 sock.send(b"OK")

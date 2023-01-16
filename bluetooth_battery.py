@@ -9,8 +9,9 @@ A python library to get battery level from Bluetooth headsets
 # 29 Sept 2019
 
 import argparse
+from typing import Dict, List, Optional, Union
+
 import bluetooth
-from typing import Optional, Union, List, Dict
 
 
 class BatteryQueryError(bluetooth.BluetoothError):

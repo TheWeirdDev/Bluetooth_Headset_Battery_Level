@@ -19,6 +19,7 @@ class BatteryQueryError(bluetooth.BluetoothError):
 
 
 class SocketDataIterator:
+
     def __init__(self, sock: bluetooth.BluetoothSocket, chunk_size: int = 128):
         """
         Create an Iterator over the given Socket
@@ -36,6 +37,7 @@ class SocketDataIterator:
 
 
 class RFCOMMSocket(bluetooth.BluetoothSocket):
+
     def __init__(self, proto=bluetooth.RFCOMM, _sock=None):
         super().__init__(proto, _sock)
 
@@ -51,10 +53,12 @@ class RFCOMMSocket(bluetooth.BluetoothSocket):
         Find the RFCOMM port number for a given bluetooth device
         """
         uuid = "0000111e-0000-1000-8000-00805f9b34fb"
-        services: List[Dict] = bluetooth.find_service(address=device_mac, uuid=uuid)
+        services: List[Dict] = bluetooth.find_service(address=device_mac,
+                                                      uuid=uuid)
 
         for service in services:
-            if "protocol" in service.keys() and service["protocol"] == "RFCOMM":
+            if "protocol" in service.keys(
+            ) and service["protocol"] == "RFCOMM":
                 return service["port"]
         # Raise Interface error when the required service is not offered my the end device
         raise bluetooth.BluetoothError(
@@ -69,9 +73,10 @@ class RFCOMMSocket(bluetooth.BluetoothSocket):
 
 
 class BatteryStateQuerier:
-    def __init__(
-        self, bluetooth_mac: str, bluetooth_port: Optional[Union[str, int]] = None
-    ):
+
+    def __init__(self,
+                 bluetooth_mac: str,
+                 bluetooth_port: Optional[Union[str, int]] = None):
         """
         Prepare a query for the end devices' battery state
 
@@ -82,8 +87,7 @@ class BatteryStateQuerier:
         The actual query can be performed using the int() and str() method.
         """
         self._bt_settings = bluetooth_mac, int(
-            bluetooth_port or RFCOMMSocket.find_rfcomm_port(bluetooth_mac)
-        )
+            bluetooth_port or RFCOMMSocket.find_rfcomm_port(bluetooth_mac))
 
     def __int__(self):
         """
@@ -167,8 +171,7 @@ def main():
     and printed to stdout
     """
     parser = argparse.ArgumentParser(
-        description="Get battery level from Bluetooth headsets"
-    )
+        description="Get battery level from Bluetooth headsets")
     parser.add_argument(
         "devices",
         metavar="DEVICE_MAC[.PORT]",

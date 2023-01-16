@@ -51,13 +51,15 @@ class RFCOMMSocket(bluetooth.BluetoothSocket):
         Find the RFCOMM port number for a given bluetooth device
         """
         uuid = "0000111e-0000-1000-8000-00805f9b34fb"
-        services: List[Dict] = bluetooth.find_service(address=device_mac, uuid=uuid)
+        services: List[Dict] = bluetooth.find_service(
+            address=device_mac, uuid=uuid)
 
         for service in services:
             if "protocol" in service.keys() and service["protocol"] == "RFCOMM":
                 return service["port"]
         # Raise Interface error when the required service is not offered my the end device
-        raise bluetooth.BluetoothError("Couldn't find the RFCOMM port number. Perhaps the device is offline?")
+        raise bluetooth.BluetoothError(
+            "Couldn't find the RFCOMM port number. Perhaps the device is offline?")
 
     def send(self, data):
         """
@@ -78,7 +80,8 @@ class BatteryStateQuerier:
 
         The actual query can be performed using the int() and str() method.
         """
-        self._bt_settings = bluetooth_mac, int(bluetooth_port or RFCOMMSocket.find_rfcomm_port(bluetooth_mac))
+        self._bt_settings = bluetooth_mac, int(
+            bluetooth_port or RFCOMMSocket.find_rfcomm_port(bluetooth_mac))
 
     def __int__(self):
         """
@@ -105,7 +108,8 @@ class BatteryStateQuerier:
                 sock.send(b"+BRSF: 1024")
                 sock.send(b"OK")
             elif b"CIND=" in line:
-                sock.send(b"+CIND:(\"service\",(0-1)),(\"call\",(0-1)),(\"callsetup\",(0-3)),(\"callheld\",(0-2)),(\"battchg\",(0-5))")
+                sock.send(
+                    b"+CIND:(\"service\",(0-1)),(\"call\",(0-1)),(\"callsetup\",(0-3)),(\"callheld\",(0-2)),(\"battchg\",(0-5))")
                 sock.send(b"OK")
             elif b"CIND?" in line:
                 sock.send(b"+CIND: 0,0,0,0,3")
@@ -159,13 +163,15 @@ def main():
     list a bluetooth socket will be opened and the battery level will be read
     and printed to stdout
     """
-    parser = argparse.ArgumentParser(description="Get battery level from Bluetooth headsets")
+    parser = argparse.ArgumentParser(
+        description="Get battery level from Bluetooth headsets")
     parser.add_argument("devices", metavar="DEVICE_MAC[.PORT]", type=str, nargs="+",
                         help="(MAC address of target)[.SPP Port]")
     args = parser.parse_args()
     for device in args.devices:
         query = BatteryStateQuerier(*device.split("."))
         print("Battery level for {} is {}".format(device, str(query)))
+
 
 if __name__ == "__main__":
     main()

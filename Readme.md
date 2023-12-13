@@ -110,6 +110,8 @@ query = BatteryStateQuerier("11:22:33:44:55:66", "4")
 result = int(query)  # returns integer between 0 and 100
 # or
 result = str(query)  # returns "0%".."100%"
+# or
+result = query.query()  # returns a dictonary {'overall': 100}
 ```
 
 As errors can occur in a wireless system, you probably want to handle them:

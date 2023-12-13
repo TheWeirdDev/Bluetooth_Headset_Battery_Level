@@ -89,19 +89,24 @@ class BatteryStateQuerier:
         """
         Perform a reading and get the result as int between 0 and 100
         """
-        return self._perform_query()
+        result = self.query()
+        # Check whether the result was found, otherwise raise an Error
+        if "overall" in result:
+            return result["overall"]
+
+        raise BatteryQueryError("Could not query the battery state.")
 
     def __str__(self):
         """
         Perform a reading and get the result as str between 0% and 100%
         """
-        return "{:.0%}".format(self._perform_query() / 100)
+        return "{:.0%}".format(int(self) / 100)
 
-    def _perform_query(self) -> int:
+    def query(self) -> dict[str, int]:
         """
-        Will try to get and print the battery level of supported devices
+        Will try to get the battery level of supported devices
         """
-        result = None
+        result: dict[str, int] = {}
         sock = RFCOMMSocket()
         logger.debug("Connecting to {}.{}".format(self._bt_settings[0], self._bt_settings[1]))
         sock.connect(self._bt_settings)
@@ -135,28 +140,26 @@ class BatteryStateQuerier:
                     parts = iter(parts)
                     params = dict(zip(parts, parts))
                     if b'1' in params:
-                        result = (int(params[b'1']) + 1) * 10
+                        result["overall"] = (int(params[b'1']) + 1) * 10
                         break
             elif b"BIEV=" in line:
                 params = line.strip().split(b"=")[1].split(b",")
                 if params[0] == b"2":
-                    result = int(params[1])
+                    result["overall"] = int(params[1])
                     break
             elif b"XEVENT=BATTERY" in line:
                 params = line.strip().split(b"=")[1].split(b",")
                 if len(params) >= 3:
                     # AT+XEVENT=BATTERY,6,11,461,0
-                    result = int(params[1]) / int(params[2]) * 100
+                    result["overall"] = int(params[1]) / int(params[2]) * 100
                 else:
                     # AT+XEVENT=BATTERY,9
-                    result = (int(params[1]) + 1) * 10
+                    result["overall"] = (int(params[1]) + 1) * 10
                 break
             else:
                 sock.send(b"OK")
         sock.close()
-        # Check whether the result was found, otherwise raise an Error
-        if result is None:
-            raise BatteryQueryError("Could not query the battery state.")
+        logger.debug("Query results: " + str(result))
         return result
 
 

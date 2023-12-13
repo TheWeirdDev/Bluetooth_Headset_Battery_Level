@@ -10,8 +10,10 @@ A python library to get battery level from Bluetooth headsets
 
 import argparse
 import bluetooth
+import logging
 from typing import Optional, Union, List, Dict
 
+logger = logging.getLogger(__name__)
 
 class BatteryQueryError(bluetooth.BluetoothError):
     pass
@@ -31,7 +33,9 @@ class SocketDataIterator:
         """
         Receive chunks
         """
-        return self._sock.recv(self._chunk_size)
+        data = self._sock.recv(self._chunk_size)
+        logger.debug("<<< " + str(data))
+        return data
 
 
 class RFCOMMSocket(bluetooth.BluetoothSocket):
@@ -63,6 +67,7 @@ class RFCOMMSocket(bluetooth.BluetoothSocket):
         """
         This function sends a message through a bluetooth socket with added line separators
         """
+        logger.debug(">>> " + str(data))
         return super().send(b"\r\n" + data + b"\r\n")
 
 
@@ -98,7 +103,9 @@ class BatteryStateQuerier:
         """
         result = None
         sock = RFCOMMSocket()
+        logger.debug("Connecting to {}.{}".format(self._bt_settings[0], self._bt_settings[1]))
         sock.connect(self._bt_settings)
+        logger.debug("Connected")
         # Iterate received packets until there is no more or a result was found
         for line in sock:
             if b"BRSF" in line:
@@ -162,7 +169,10 @@ def main():
     parser = argparse.ArgumentParser(description="Get battery level from Bluetooth headsets")
     parser.add_argument("devices", metavar="DEVICE_MAC[.PORT]", type=str, nargs="+",
                         help="(MAC address of target)[.SPP Port]")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Enable verbose logs")
     args = parser.parse_args()
+    if args.verbose:
+        logging.basicConfig(level=logging.DEBUG)
     for device in args.devices:
         query = BatteryStateQuerier(*device.split("."))
         print("Battery level for {} is {}".format(device, str(query)))

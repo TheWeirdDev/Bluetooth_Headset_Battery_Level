@@ -111,7 +111,7 @@ result = int(query)  # returns integer between 0 and 100
 # or
 result = str(query)  # returns "0%".."100%"
 # or
-result = query.query()  # returns a dictonary {'overall': 100}
+result = query.query()  # returns a dictonary, e.g. {'overall': 100, 'left': 100, 'right': 100, 'case': 87}
 ```
 
 As errors can occur in a wireless system, you probably want to handle them:

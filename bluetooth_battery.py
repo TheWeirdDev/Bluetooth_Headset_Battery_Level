@@ -83,7 +83,8 @@ class BatteryStateQuerier:
 
         The actual query can be performed using the int() and str() method.
         """
-        self._bt_settings = bluetooth_mac, int(bluetooth_port or RFCOMMSocket.find_rfcomm_port(bluetooth_mac))
+        self._bluetooth_mac = bluetooth_mac
+        self._bluetooth_port = int(bluetooth_port or RFCOMMSocket.find_rfcomm_port(bluetooth_mac))
 
     def __int__(self):
         """
@@ -108,8 +109,8 @@ class BatteryStateQuerier:
         """
         result: dict[str, int] = {}
         sock = RFCOMMSocket()
-        logger.debug("Connecting to {}.{}".format(self._bt_settings[0], self._bt_settings[1]))
-        sock.connect(self._bt_settings)
+        logger.debug("Connecting to {}.{}".format(self._bluetooth_mac, self._bluetooth_port))
+        sock.connect((self._bluetooth_mac, self._bluetooth_port))
         logger.debug("Connected")
         # Iterate received packets until there is no more or a result was found
         for line in sock:

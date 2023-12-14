@@ -210,7 +210,7 @@ Special thanks to:
 
 [@GaLaXy102](https://github.com/GaLaXy102): For re-writing the code, making it cleaner and usable as a library
 
-[@drinkcat](https://github.com/@drinkcat): For adding support for Nearby/FastPair protocol
+[@drinkcat](https://github.com/drinkcat): For adding support for Nearby/FastPair protocol
 
 ❤️ And everyone else that pointed out the issues or helped me with writing the code or testing it.
 

@@ -5,7 +5,7 @@ A python library to get battery level from Bluetooth headsets
 """
 
 # License: GPL-3.0
-# Author: @TheWeirdDev, @GaLaXy102
+# Author: @TheWeirdDev, @GaLaXy102, @drinkcat
 # 29 Sept 2019
 
 import argparse
